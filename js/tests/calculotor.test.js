@@ -7,11 +7,10 @@ class AuthorizerTest {
   }
 }
 
-test("should throw when not authorized", (t) => {
-  
-  // TODO: write a test that fails due to the bug in
-  const calculator = new Calculator(new AuthorizerTest());
-  calculator.divide(12, 6);
-
+test('should throw when not authorized', (t) => {
+  const calculator = new Calculator({
+    authorize: () => false,
+  });
+  t.throws(() => calculator.divide(12, 6));
   t.end();
-});
+})
